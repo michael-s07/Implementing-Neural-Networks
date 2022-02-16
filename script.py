@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler
 from tensorflow.keras.models import Sequential
-
+from tensorflow.keras.layers import InputLayer, Dense
 dataset = pd.read_csv("life_expectancy.csv")
 print(dataset.head())
 print(dataset.describe())
@@ -28,3 +28,9 @@ ct = ColumnTransformer([("only numeric", StandardScaler(), numerical_columns)], 
 features_train_scaled = ct.fit_transform(features_train)
 features_test_scaled = ct.transform(features_train)
 
+my_model = Sequential()
+input = InputLayer(input_shape=(features.shape[1], ))
+my_model.add(input)
+my_model.add(Dense(77, activation = 'relu'))
+my_model.add(Dense(1))
+print(my_model.summary())
