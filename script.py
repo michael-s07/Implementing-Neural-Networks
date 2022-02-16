@@ -39,3 +39,9 @@ print(my_model.summary())
 #Optimizing model 
 opt  = Adam(learning_rate=0.01)
 my_model.compile(loss='mse', metrics=['mae'], optimizer=opt)
+
+# Training Model 
+my_model.fit(features_train_scaled, labels_train, epochs=40, batch_size=1, verbose=1)
+res_mse, res_mae =my_model.evaluate(features_test_scaled, labels_test, verbose=0)
+print(res_mae)
+print(res_mse)
