@@ -4,6 +4,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import InputLayer, Dense
+from tensorflow.keras.optimizers import Adam
 dataset = pd.read_csv("life_expectancy.csv")
 print(dataset.head())
 print(dataset.describe())
@@ -34,3 +35,7 @@ my_model.add(input)
 my_model.add(Dense(77, activation = 'relu'))
 my_model.add(Dense(1))
 print(my_model.summary())
+
+#Optimizing model 
+opt  = Adam(learning_rate=0.01)
+my_model.compile(loss='mse', metrics=['mae'], optimizer=opt)
